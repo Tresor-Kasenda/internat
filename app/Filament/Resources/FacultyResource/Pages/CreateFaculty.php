@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\UserResource\Pages;
+namespace App\Filament\Resources\FacultyResource\Pages;
 
-use App\Filament\Resources\UserResource;
+use App\Filament\Resources\FacultyResource;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
 
-class CreateUser extends CreateRecord
+class CreateFaculty extends CreateRecord
 {
-    protected static string $resource = UserResource::class;
+    protected static string $resource = FacultyResource::class;
 
     protected function getRedirectUrl(): string
     {
@@ -19,7 +19,7 @@ class CreateUser extends CreateRecord
     {
         return Notification::make()
             ->success()
-            ->title('Utilisateur creer')
-            ->body('La creation de l\'utilisateur a été effectuée avec succès.');
+            ->title('Faculté créée')
+            ->body('La creation de la faculté a été effectuée avec succès.');
     }
 }

@@ -6,8 +6,6 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\EditAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
@@ -20,9 +18,9 @@ class UserResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-s-user-circle';
+    protected static ?string $navigationGroup = "Filament Shield";
 
-    protected static ?string $navigationGroup = 'Filament Shield';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     public static function form(Form $form): Form
     {
@@ -30,16 +28,17 @@ class UserResource extends Resource implements HasShieldPermissions
             ->schema([
                 Forms\Components\Card::make()->schema([
                     Forms\Components\TextInput::make('username')
+                        ->unique()
                         ->required(),
                     Forms\Components\TextInput::make('name')
                         ->required(),
                     Forms\Components\TextInput::make('numtel')
-                        ->required()
+                        ->unique()
                         ->tel(),
-                    Forms\Components\TextInput::make('adresse')
-                        ->required(),
+                    Forms\Components\TextInput::make('adresse'),
                     Forms\Components\TextInput::make('email')
                         ->email()
+                        ->unique()
                         ->required(),
                     Forms\Components\TextInput::make('password')
                         ->password()
@@ -52,7 +51,9 @@ class UserResource extends Resource implements HasShieldPermissions
                         ->relationship('roles', 'name')
                         ->preload()
                         ->required(),
-                ])
+                    Forms\Components\Toggle::make('status')
+                        ->required(),
+                ])->columns(2)
             ]);
     }
 
@@ -61,19 +62,18 @@ class UserResource extends Resource implements HasShieldPermissions
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('username')
-                    ->label('Prenom')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Nom')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('numtel')
-                    ->label('Numéro de téléphone')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('adresse')
-                    ->label('Adresse')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
-                    ->label('Email')
+                    ->searchable(),
+                Tables\Columns\IconColumn::make('status')
+                    ->boolean(),
+                Tables\Columns\IconColumn::make('role.name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -88,8 +88,12 @@ class UserResource extends Resource implements HasShieldPermissions
                 //
             ])
             ->actions([
-                EditAction::make()->slideOver(),
-                DeleteAction::make()
+                Tables\Actions\EditAction::make()
+                    ->label('Modifier'),
+                Tables\Actions\DeleteAction::make()
+                    ->requiresConfirmation()
+                    ->modalIcon('heroicon-o-trash')
+                    ->label('Supprimer'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -117,6 +121,7 @@ class UserResource extends Resource implements HasShieldPermissions
         ];
     }
 
+
     public static function getPermissionPrefixes(): array
     {
         return [
@@ -125,7 +130,7 @@ class UserResource extends Resource implements HasShieldPermissions
             'create',
             'update',
             'delete',
-            'delete_any'
+            'delete_any',
         ];
     }
 }

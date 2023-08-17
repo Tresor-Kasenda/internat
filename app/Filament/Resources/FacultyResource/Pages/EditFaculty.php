@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\UserResource\Pages;
+namespace App\Filament\Resources\FacultyResource\Pages;
 
-use App\Filament\Resources\UserResource;
+use App\Filament\Resources\FacultyResource;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 
-class EditUser extends EditRecord
+class EditFaculty extends EditRecord
 {
-    protected static string $resource = UserResource::class;
+    protected static string $resource = FacultyResource::class;
 
     protected function getRedirectUrl(): string
     {
@@ -19,7 +19,7 @@ class EditUser extends EditRecord
     {
         return Notification::make()
             ->success()
-            ->title('Utilisateur modifier')
-            ->body('La modification de l\'utilisateur a été effectuée avec succès.');
+            ->title('Faculté modifier')
+            ->body('La modification de la faculté a été effectuée avec succès.');
     }
 }
