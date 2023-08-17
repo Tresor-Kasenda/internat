@@ -17,7 +17,7 @@ class UserResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationGroup = 'Filament Shield';
+    protected static ?string $navigationGroup = 'Gestion utilisateurs';
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
@@ -41,9 +41,10 @@ class UserResource extends Resource implements HasShieldPermissions
                         ->required(),
                     Forms\Components\TextInput::make('password')
                         ->password()
-                        ->dehydrateStateUsing(fn ($state) => Hash::make($state))
-                        ->dehydrated(fn ($state) => filled($state))
-                        ->required(fn (Page $livewire) => ($livewire instanceof Pages\CreateUser)),
+                        ->visibleOn('create')
+                        ->dehydrateStateUsing(fn($state) => Hash::make($state))
+                        ->dehydrated(fn($state) => filled($state))
+                        ->required(fn(Page $livewire) => ($livewire instanceof Pages\CreateUser)),
                     Forms\Components\Select::make('role')
                         ->label('Role')
                         ->multiple()
@@ -70,9 +71,8 @@ class UserResource extends Resource implements HasShieldPermissions
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
-                Tables\Columns\IconColumn::make('role.name')
+                Tables\Columns\ToggleColumn::make('status'),
+                Tables\Columns\IconColumn::make('roles.name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
