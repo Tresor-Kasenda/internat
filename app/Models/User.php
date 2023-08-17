@@ -27,7 +27,7 @@ class User extends Authenticatable
         'username',
         'numtel',
         'adresse',
-        'status'
+        'status',
     ];
 
     /**
@@ -49,7 +49,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
 
     public function canAccessPanel(Panel $panel): bool
     {

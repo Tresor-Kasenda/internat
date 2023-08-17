@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
@@ -18,7 +17,7 @@ class UserResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationGroup = "Filament Shield";
+    protected static ?string $navigationGroup = 'Filament Shield';
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
@@ -42,9 +41,9 @@ class UserResource extends Resource implements HasShieldPermissions
                         ->required(),
                     Forms\Components\TextInput::make('password')
                         ->password()
-                        ->dehydrateStateUsing(fn($state) => Hash::make($state))
-                        ->dehydrated(fn($state) => filled($state))
-                        ->required(fn(Page $livewire) => ($livewire instanceof Pages\CreateUser)),
+                        ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                        ->dehydrated(fn ($state) => filled($state))
+                        ->required(fn (Page $livewire) => ($livewire instanceof Pages\CreateUser)),
                     Forms\Components\Select::make('role')
                         ->label('Role')
                         ->multiple()
@@ -53,7 +52,7 @@ class UserResource extends Resource implements HasShieldPermissions
                         ->required(),
                     Forms\Components\Toggle::make('status')
                         ->required(),
-                ])->columns(2)
+                ])->columns(2),
             ]);
     }
 
@@ -120,7 +119,6 @@ class UserResource extends Resource implements HasShieldPermissions
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
-
 
     public static function getPermissionPrefixes(): array
     {

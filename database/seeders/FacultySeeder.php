@@ -22,7 +22,7 @@ class FacultySeeder extends Seeder
             'Electrique',
             'Electronique',
             'Pedagogie generale',
-        ])->each(fn($faculty) => Faculty::factory()->create([
+        ])->each(fn ($faculty) => Faculty::factory()->create([
             'name' => $faculty,
         ]));
     }

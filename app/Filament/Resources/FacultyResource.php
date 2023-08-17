@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\FacultyResource\Pages;
-use App\Filament\Resources\FacultyResource\RelationManagers;
 use App\Models\Faculty;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
@@ -30,7 +29,7 @@ class FacultyResource extends Resource implements HasShieldPermissions
                     Forms\Components\RichEditor::make('description')
                         ->minLength(2)
                         ->columnSpanFull(),
-                ])
+                ]),
             ]);
     }
 

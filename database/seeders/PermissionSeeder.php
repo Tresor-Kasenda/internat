@@ -17,6 +17,6 @@ class PermissionSeeder extends Seeder
             'read',
             'update',
             'delete',
-        ])->each(fn($permission) => Permission::create(['name' => $permission]));
+        ])->each(fn ($permission) => Permission::create(['name' => $permission]));
     }
 }
