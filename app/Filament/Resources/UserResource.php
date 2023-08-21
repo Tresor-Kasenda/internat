@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
@@ -42,9 +44,9 @@ class UserResource extends Resource implements HasShieldPermissions
                     Forms\Components\TextInput::make('password')
                         ->password()
                         ->visibleOn('create')
-                        ->dehydrateStateUsing(fn($state) => Hash::make($state))
-                        ->dehydrated(fn($state) => filled($state))
-                        ->required(fn(Page $livewire) => ($livewire instanceof Pages\CreateUser)),
+                        ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                        ->dehydrated(fn ($state) => filled($state))
+                        ->required(fn (Page $livewire) => ($livewire instanceof Pages\CreateUser)),
                     Forms\Components\Select::make('role')
                         ->label('Role')
                         ->multiple()
@@ -84,7 +86,7 @@ class UserResource extends Resource implements HasShieldPermissions
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
@@ -107,7 +109,7 @@ class UserResource extends Resource implements HasShieldPermissions
     public static function getRelations(): array
     {
         return [
-            //
+
         ];
     }
 

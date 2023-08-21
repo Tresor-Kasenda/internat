@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
@@ -21,11 +23,11 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+
         User::class => UserPolicy::class,
         Role::class => RolePolicy::class,
         Faculty::class => FacultyPolicy::class,
-        Payment::class => PaymentPolicy::class
+        Payment::class => PaymentPolicy::class,
     ];
 
     /**
@@ -33,6 +35,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+
     }
 }
