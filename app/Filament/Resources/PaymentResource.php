@@ -6,6 +6,7 @@ namespace App\Filament\Resources;
 
 use App\Enums\PaymentMethod;
 use App\Filament\Resources\PaymentResource\Pages;
+use App\Filament\Resources\PaymentResource\Widgets\PaymentTypeOverView;
 use App\Models\Payment;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
@@ -24,7 +25,7 @@ class PaymentResource extends Resource implements HasShieldPermissions
     {
         return $form
             ->schema([
-                Forms\Components\Card::make()->schema([
+                Forms\Components\Section::make()->schema([
                     Forms\Components\Select::make('user_id')
                         ->relationship('user', 'name')
                         ->required(),
@@ -32,6 +33,7 @@ class PaymentResource extends Resource implements HasShieldPermissions
                         ->required(),
                     Forms\Components\TextInput::make('amount')
                         ->required()
+                        ->prefix('FC')
                         ->numeric(),
                     Forms\Components\Select::make('payment_method')
                         ->options(PaymentMethod::class)
@@ -108,6 +110,13 @@ class PaymentResource extends Resource implements HasShieldPermissions
             'update',
             'delete',
             'delete_any',
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            PaymentTypeOverView::class
         ];
     }
 }

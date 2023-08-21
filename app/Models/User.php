@@ -69,4 +69,10 @@ class User extends Authenticatable
         return $this->hasMany(Interne::class)
             ->orderBy('created_at', 'desc');
     }
+
+    public function visits(): HasMany
+    {
+        return $this->hasMany(Visit::class)
+            ->orderBy('created_at', 'desc');
+    }
 }
