@@ -24,9 +24,9 @@ return [
         'intercept_gate' => 'before', // after
     ],
 
-    'filament_user' => [
+    'eleve' => [
         'enabled' => true,
-        'name' => 'filament_user',
+        'name' => 'eleve',
     ],
 
     'permission_prefixes' => [
