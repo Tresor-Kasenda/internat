@@ -17,6 +17,8 @@ class FacultyResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = Faculty::class;
 
+    protected static ?string $navigationGroup = 'Internat';
+
     protected static ?string $navigationIcon = 'heroicon-o-building-library';
 
     protected static ?string $navigationLabel = 'Facultés';

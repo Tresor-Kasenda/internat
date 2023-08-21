@@ -16,6 +16,8 @@ class ChambreResource extends Resource
 {
     protected static ?string $model = Chambre::class;
 
+    protected static ?string $navigationGroup = 'Internat';
+
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     public static function form(Form $form): Form

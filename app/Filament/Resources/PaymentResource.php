@@ -19,6 +19,8 @@ class PaymentResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = Payment::class;
 
+    protected static ?string $navigationGroup = 'Internat';
+
     protected static ?string $navigationIcon = 'heroicon-o-currency-pound';
 
     public static function form(Form $form): Form
