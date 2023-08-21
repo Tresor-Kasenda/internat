@@ -27,6 +27,8 @@ class LocationResource extends Resource
                 Forms\Components\Section::make()->schema([
                     Forms\Components\Select::make('user_id')
                         ->relationship('user', 'name')
+                        ->searchable()
+                        ->preload()
                         ->required(),
                     Forms\Components\Select::make('chambre_id')
                         ->relationship('chambre', 'nom_chamber')
