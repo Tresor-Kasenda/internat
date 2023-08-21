@@ -15,4 +15,9 @@ class CreatePayment extends CreateRecord
     {
         return $this->getResource()::getUrl('index');
     }
+
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return "Le paiement a été créé avec succès";
+    }
 }

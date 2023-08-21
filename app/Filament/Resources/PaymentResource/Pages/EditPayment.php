@@ -15,4 +15,9 @@ class EditPayment extends EditRecord
     {
         return $this->getResource()::getUrl('index');
     }
+
+    protected function getSavedNotificationTitle(): ?string
+    {
+        return "Le paiement a ete mise a jours avec succes";
+    }
 }

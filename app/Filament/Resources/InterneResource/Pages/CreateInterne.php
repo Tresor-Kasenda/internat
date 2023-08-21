@@ -15,4 +15,9 @@ class CreateInterne extends CreateRecord
     {
         return $this->getResource()::getUrl('index');
     }
+
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return "L'eleve interne a  été ajoutés avec succès";
+    }
 }

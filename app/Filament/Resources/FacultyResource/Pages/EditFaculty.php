@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Filament\Resources\FacultyResource\Pages;
 
 use App\Filament\Resources\FacultyResource;
-use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 
 class EditFaculty extends EditRecord
@@ -17,11 +16,8 @@ class EditFaculty extends EditRecord
         return $this->getResource()::getUrl('index');
     }
 
-    protected function getCreatedNotificationTitle(): ?string
+    protected function getUpdatedNotificationTitle(): ?string
     {
-        return Notification::make()
-            ->success()
-            ->title('Faculté modifier')
-            ->body('La modification de la faculté a été effectuée avec succès.');
+        return "La faculte a ete modifie avec succes";
     }
 }

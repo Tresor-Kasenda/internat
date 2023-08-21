@@ -68,17 +68,27 @@ class UserResource extends Resource implements HasShieldPermissions
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('username')
+                    ->label('Nom d\'utilisateur')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name')
+                    ->label("Nom de l'utilisateur")
                     ->searchable(),
                 Tables\Columns\TextColumn::make('numtel')
+                    ->label('Numéro de téléphone')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('adresse')
+                    ->label('Adresse')
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->label('Email')
                     ->searchable(),
-                Tables\Columns\ToggleColumn::make('status'),
-                Tables\Columns\IconColumn::make('roles.name')
+                Tables\Columns\ToggleColumn::make('status')
+                    ->label('Statut')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('roles.name')
+                    ->label('Role')
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

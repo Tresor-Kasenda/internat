@@ -15,4 +15,9 @@ class EditInterne extends EditRecord
     {
         return $this->getResource()::getUrl('index');
     }
+
+    protected function getUpdatedNotificationTitle(): ?string
+    {
+        return "L'eleve interne a  été modifié avec succès";
+    }
 }

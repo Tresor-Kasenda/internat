@@ -15,4 +15,9 @@ class CreateFaculty extends CreateRecord
     {
         return $this->getResource()::getUrl('index');
     }
+
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return "La faculte a ete cree avec succes";
+    }
 }

@@ -15,4 +15,10 @@ class CreateUser extends CreateRecord
     {
         return $this->getResource()::getUrl('index');
     }
+
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return "L'utilisateur a ete cree avec succes";
+    }
+
 }

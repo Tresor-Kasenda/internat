@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Filament\Resources\UserResource\Pages;
 
 use App\Filament\Resources\UserResource;
-use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 
 class EditUser extends EditRecord
@@ -19,9 +18,6 @@ class EditUser extends EditRecord
 
     protected function getCreatedNotificationTitle(): ?string
     {
-        return Notification::make()
-            ->success()
-            ->title('Utilisateur modifier')
-            ->body('La modification de l\'utilisateur a été effectuée avec succès.');
+        return "L'utilisateur a été modifié avec succès";
     }
 }

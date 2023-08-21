@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\VisitType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +19,7 @@ class Visit extends Model
         'heure_sortie',
         'description',
         'status',
+        'type'
     ];
 
     protected $casts = [
@@ -25,6 +27,7 @@ class Visit extends Model
         'heure_arriver' => 'time',
         'heure_sortie' => 'time',
         'status' => 'boolean',
+        'type' => VisitType::class
     ];
 
     public function user(): BelongsTo
