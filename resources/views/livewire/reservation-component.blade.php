@@ -22,21 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-group ">
-                        <label class="form-label" for="username">
-                            Votre prenon
-                        </label>
-                        <div class="form-control-wrap">
-                            <input
-                                type="text"
-                                class="form-control  @error('form.username') is-invalid @enderror"
-                                id="username"
-                                wire:model="form.username"
-                                placeholder="Your Name">
-                        </div>
-                    </div>
-                </div>
+               
 
                 <div class="col-12" wire:loading.attr.remove="disabled">
                     <button type="submit" class="btn btn-lg btn-primary">

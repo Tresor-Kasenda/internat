@@ -21,6 +21,7 @@ class SubscriptionComponent extends Component
     #[Layout('layouts.app')]
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
     {
+        session()->forget('numtel');
         return view('livewire.subscription-component');
     }
 
@@ -55,9 +56,9 @@ class SubscriptionComponent extends Component
                 'user_id' => $user->id,
             ]);
 
-        session()->flash('success', "Votre compte a été créé avec succès. Vous pouvez vous connecter maintenant.");
+        session()->flash('success', "Votre inscription a ete cree avec success et veillez reserver votre chambre bien avant.");
 
-        return $this->redirect('/reserver');
+        return $this->redirect('/reserver', navigate: true);
 
     }
 }

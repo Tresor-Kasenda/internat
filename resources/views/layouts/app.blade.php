@@ -17,7 +17,7 @@
                     <div class="header-wrap">
                         <div class="header-logo">
                             <h4>
-                                <a href="{{ route('home') }}" class="logo-link" wire:navigator>
+                                <a href="{{ route('home') }}" class="logo-link" wire:navigate>
                                     Inscription
                                 </a>
                             </h4>
@@ -33,14 +33,14 @@
                                 <li class="menu-item">
                                     <a href="{{ route('home') }}"
                                        class="menu-link nav-link"
-                                       wire:navigator
+                                       wire:navigate
                                     >Inscription</a>
                                 </li>
                                 <li class="menu-item">
                                     <a
                                         href="{{ route('reserver') }}"
                                         class="menu-link nav-link"
-                                        wire:navigator
+                                        wire:navigate
                                     >Reserver une chambre</a>
                                 </li>
                             </ul>
@@ -53,6 +53,11 @@
                     <div class="alert alert-icon alert-success" role="alert">
                         <em class="icon ni ni-alert-circle"></em>
                         <strong>Felicitation</strong>. {{ session('success') }}
+                    </div>
+                @endif
+                @if(session('error'))
+                    <div class="alert alert-icon alert-danger" role="alert">
+                        <strong>Warning</strong>. {{ session('error') }}
                     </div>
                 @endif
             </div>

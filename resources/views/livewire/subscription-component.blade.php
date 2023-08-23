@@ -8,7 +8,7 @@
                 <div class="form-control-wrap">
                     <input
                         type="text"
-                        class="form-control form-control-lg @error('form.name') is-invalid @enderror"
+                        class="form-control @error('form.name') is-invalid @enderror"
                         id="name"
                         wire:model="form.name"
                         placeholder="Your Name">
@@ -23,7 +23,7 @@
                 <div class="form-control-wrap">
                     <input
                         type="text"
-                        class="form-control form-control-lg @error('form.username') is-invalid @enderror"
+                        class="form-control @error('form.username') is-invalid @enderror"
                         id="username"
                         wire:model="form.username"
                         placeholder="Your Name">
@@ -38,7 +38,7 @@
                 <div class="form-control-wrap">
                     <input
                         type="text"
-                        class="form-control form-control-lg @error('form.numtel') is-invalid @enderror"
+                        class="form-control @error('form.numtel') is-invalid @enderror"
                         id="numtel"
                         wire:model="form.numtel"
                         placeholder="Numero de telephone">
@@ -53,7 +53,7 @@
                 <div class="form-control-wrap">
                     <input
                         type="text"
-                        class="form-control form-control-lg @error('form.adresse') is-invalid @enderror"
+                        class="form-control @error('form.adresse') is-invalid @enderror"
                         id="adresse"
                         wire:model="form.adresse"
                         placeholder="Votre addresse">
@@ -68,7 +68,7 @@
                 <div class="form-control-wrap">
                     <input
                         type="text"
-                        class="form-control form-control-lg @error('form.email') is-invalid @enderror"
+                        class="form-control @error('form.email') is-invalid @enderror"
                         id="email"
                         wire:model="form.email"
                         placeholder="Enter Your Email">
@@ -83,7 +83,7 @@
                 <div class="form-control-wrap">
                     <input
                         type="date"
-                        class="form-control form-control-lg date-picker @error('form.date_naissance') is-invalid @enderror"
+                        class="form-control date-picker @error('form.date_naissance') is-invalid @enderror"
                         id="date_naissance"
                         data-date-format="yyyy-mm-dd"
                         wire:model="form.date_naissance"
@@ -99,7 +99,7 @@
                 <div class="form-control-wrap">
                     <input
                         type="text"
-                        class="form-control form-control-lg @error('form.lieu_naissance') is-invalid @enderror"
+                        class="form-control @error('form.lieu_naissance') is-invalid @enderror"
                         id="lieu_naissance"
                         wire:model="form.lieu_naissance"
                         placeholder="Lieu de naissance">
@@ -114,7 +114,7 @@
                 <div class="form-control-wrap">
                     <input
                         type="text"
-                        class="form-control form-control-lg @error('form.urgence_telephone') is-invalid @enderror"
+                        class="form-control @error('form.urgence_telephone') is-invalid @enderror"
                         id="urgence_telephone"
                         wire:model="form.urgence_telephone"
                         placeholder="Numero d'urgence">

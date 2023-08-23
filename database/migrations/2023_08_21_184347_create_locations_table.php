@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\PaymentMethod;
 use App\Models\Chambre;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -20,8 +21,14 @@ return new class extends Migration {
             $table->foreignIdFor(Chambre::class)
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->date('date_debut');
-            $table->date('date_fin');
+            $table->datetime('date_debut');
+            $table->datetime('date_fin');
+            $table->enum('payment_method', [
+                PaymentMethod::Cash->value,
+                PaymentMethod::MobileMoney->value,
+                PaymentMethod::Autre->value,
+            ])->default(PaymentMethod::Cash->value);
+            $table->boolean('is_located')->default(false);
             $table->timestamps();
         });
     }

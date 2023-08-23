@@ -38,13 +38,13 @@ class ReservationComponent extends Component
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('livewire.reservation-component', [
-            'chambers' => Chambre::query()->get(),
-            'user' => $this->user,
+            'chambers' => Chambre::query()->get()
         ]);
     }
 
     public function save(): Redirector
     {
+        dd($this->user);
         $this->form->validate();
 
         $chamber = Chambre::query()
@@ -56,6 +56,6 @@ class ReservationComponent extends Component
 
         session()->flash('success', 'Votre réservation a été enregistrée avec succès !');
 
-        return $this->redirect('/');
+        return $this->redirect('/', navigate: true);
     }
 }
