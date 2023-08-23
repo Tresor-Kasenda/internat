@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers\PaymentsRelationManager;
+use App\Filament\Resources\UserResource\RelationManagers\InternesRelationManager;
 use App\Models\User;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
@@ -52,7 +52,6 @@ class UserResource extends Resource implements HasShieldPermissions
                         ->required(fn(Page $livewire) => ($livewire instanceof Pages\CreateUser)),
                     Forms\Components\Select::make('role')
                         ->label('Role')
-                        ->multiple()
                         ->relationship('roles', 'name')
                         ->preload()
                         ->required(),
@@ -123,7 +122,7 @@ class UserResource extends Resource implements HasShieldPermissions
     public static function getRelations(): array
     {
         return [
-            PaymentsRelationManager::class
+            InternesRelationManager::class
         ];
     }
 

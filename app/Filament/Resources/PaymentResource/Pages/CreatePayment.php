@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Filament\Resources\PaymentResource\Pages;
 
 use App\Filament\Resources\PaymentResource;
+use App\Models\Interne;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreatePayment extends CreateRecord
@@ -16,8 +18,36 @@ class CreatePayment extends CreateRecord
         return $this->getResource()::getUrl('index');
     }
 
-    protected function getCreatedNotificationTitle(): ?string
+    protected function mutateFormDataBeforeCreate(array $data): array
     {
-        return "Le paiement a été créé avec succès";
+        $data['user_id'] = auth()->id();
+
+        return $data;
+    }
+
+    protected function getCreatedNotification(): ?Notification
+    {
+        return Notification::make()
+            ->success()
+            ->title('Ajout de paiement')
+            ->persistent()
+            ->body('Un nouveau paiement vient d\'etre effectuer.')
+            ->sendToDatabase(auth()->user())
+            ->send();
+    }
+
+    protected function afterCreate(): void
+    {
+        if (Interne::query()->where('user_id', $this->getRecord()->user_id)->exists()) {
+
+            Notification::make()
+                ->warning()
+                ->title('You don\'t have an active subscription!')
+                ->body('Choose a plan to continue.')
+                ->persistent()
+                ->send();
+
+            $this->halt();
+        }
     }
 }

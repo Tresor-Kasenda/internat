@@ -14,10 +14,13 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class PaymentResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = Payment::class;
+
+    protected static ?string $slug = 'paiement';
 
     protected static ?string $navigationGroup = 'Internat';
 
@@ -28,9 +31,6 @@ class PaymentResource extends Resource implements HasShieldPermissions
         return $form
             ->schema([
                 Forms\Components\Section::make()->schema([
-                    Forms\Components\Select::make('user_id')
-                        ->relationship('user', 'name')
-                        ->required(),
                     Forms\Components\DatePicker::make('payment_date')
                         ->required(),
                     Forms\Components\TextInput::make('amount')
@@ -49,14 +49,22 @@ class PaymentResource extends Resource implements HasShieldPermissions
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn(Builder $query) => $query->withoutGlobalScopes())
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
+                    ->label('Nom')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('user.username')
+                    ->label('Prenom')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('payment_date')
+                    ->label('Date de paiement')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('amount')
+                    ->label('Montant')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('payment_method')
@@ -120,5 +128,12 @@ class PaymentResource extends Resource implements HasShieldPermissions
         return [
             PaymentTypeOverView::class
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->whereHas('user', function ($user) {
+            return $user->where('id', auth()->id());
+        });
     }
 }
